@@ -1,0 +1,91 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class LinkedList
+{
+	
+    //Nested class
+	    static class Node {
+	        private int data;
+	        private Node next;
+	        
+	        public Node(int val)
+	        {
+	            this.data = val;
+	            this.next = null;
+	        }
+	    };
+    //Data member
+        private Node head;
+    
+    //Constructor
+         public LinkedList()
+         {
+             head = null;
+         }
+         
+     //Methods
+     
+        public void display()
+        {
+            System.out.print("List: ");
+            Node temp =  head;
+            while(temp.next != null)
+            {
+                System.out.print(temp.data + " -> ");
+                temp = temp.next;
+            }
+            System.out.print(temp.data + "\n");
+        }
+        public void addFirst(int value)
+        {
+            
+            Node fn =new Node(value);
+            fn.next = head;
+            head =  fn;
+        }
+        public void addatPos(int val,int pos)
+        {
+            int numberofElement =1;
+            //Add at first when pos
+            if(pos ==1)
+                addFirst(val);
+                
+            //Add in middle
+            else
+            {
+                Node temp = new Node(0);
+                temp = head;
+                while(temp.next != null)
+                {
+                    numberofElement++;
+                    if(pos == numberofElement)
+                    {
+                        Node insertedNode = new Node(val);
+                        insertedNode.next = temp.next;
+                        temp.next = insertedNode;
+                    }
+                    temp = temp.next;
+                }
+            }
+        }
+
+}
+
+class DemoMainDay06_1
+{
+    public static void main (String[] args) throws java.lang.Exception
+    {
+        LinkedList ll = new LinkedList();
+        ll.addFirst(10);
+        ll.display();
+        ll.addFirst(20);
+        ll.display();
+        ll.addFirst(30);
+        ll.display();
+        
+        ll.addatPos(40,1);
+        ll.display();
+    }
+}
